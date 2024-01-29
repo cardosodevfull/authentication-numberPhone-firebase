@@ -18,7 +18,7 @@ function Signin() {
     const [code, setCode] = useState('');
 
     const generateRecaptcha = () => {
-        window.recaptchaVerifier = new RecaptchaVerifier(auth,'recaptcha-container', {
+        window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
             'size': 'invisible'
         });
     }
@@ -55,51 +55,52 @@ function Signin() {
     }
 
     return (
-        <main>
-            <div className="app-container container">
+        <main className='flex flex-wrap justify-center items-center min-h-80'>
+            <div className='max-w-60'>
                 {!isVisivel ?
-                    <div className="row">
-                        <div className="app-title mb-3">
-                            Entrar com telefone
+                    <div className="space-y-6">
+                        <div className="text-xl font-bold text-gray-900">
+                            Informe seu telefone
                         </div>
                         <PatternFormat
                             onChange={(e) => setPhoneNumber(e.target.value)}
                             format="+55 ## ##### ####"
-                            className="form-control"
-                            placeholder="Informe seu telefone"
+                            className="bg-gray-50 border border-gray-300 text-center text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="phone number"
                             type="tel"
                         />
                         <button
                             onClick={requestOTP}
                             type="button"
-                            className="btn btn-dark w-100  mt-3 btn-block">
-                            {loading ? <p>Aguarde...</p> : "Entrar"}
+                            className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 w-full me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                            {loading ? <p>Aguarde...</p> : "Confirmar"}
                         </button>
-                        {erro && <p className='text-danger mt-2'>{erro}</p>}
+                        {erro && <p>{erro}</p>}
                     </div>
                     :
-                    <div className="row">
-                        <div className="app-title mb-3">
+                    <div className="space-y-6">
+                        <div className="text-xl font-bold text-gray-900">
                             Você recebeu um código!
                         </div>
                         <input
                             onChange={(e) => setCode(e.target.value)}
-                            className="form-control"
-                            placeholder="Informe o código"
+                            className="bg-gray-50 border border-gray-300 text-center text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="código"
                             type="tel"
                         />
                         <button
                             onClick={verificar}
                             type="button"
-                            className="btn btn-dark w-100  mt-3 btn-block">
-                            {loading ? <p>Aguarde...</p> : "Confirme"}
+                            className="text-white w-full bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                            {loading ? <p>Aguarde...</p> : "Confirmar"}
                         </button>
-                        {erro && <p className='text-danger mt-2'>{erro}</p>}
+                        {erro && <p>{erro}</p>}
                     </div>
                 }
             </div>
             <div id="recaptcha-container"></div>
         </main>
+
     )
 }
 

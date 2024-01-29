@@ -11,7 +11,7 @@ export function AppWrapper({children}) {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
     const [erro, setErro] = useState(false);
-    let [user, setUser] = useState('Francisco');
+    let [user, setUser] = useState(null);
 
     const logout = async () => {
         await app.auth().signOut();       
